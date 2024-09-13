@@ -137,6 +137,7 @@ class HistoryList extends Component {
       return (
         <div className="history-list">
           <a href="#" className={backButtonClasses} onClick={this.handleBack} />
+          <h1>History list</h1>
           <FormBuilderLoader
             identifier="AssetAdmin.HistoryList"
             schemaUrl={schemaUrl}
@@ -153,6 +154,7 @@ class HistoryList extends Component {
           {historyList.map((history) => (
             <HistoryItem
               key={history.versionid}
+              fileid={this.props.data.fileId}
               {...history}
               onClick={this.handleClick}
             />
