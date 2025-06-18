@@ -6,6 +6,18 @@ class HistoryItem extends Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
+
+  getFileIDFromURL(url) {
+    const parts = url.split('/');
+    const showIndex = parts.indexOf('show');
+
+    if (showIndex !== -1 && parts.length > showIndex + 1) {
+      return parts[showIndex + 1];
+    }
+
+    return null;
   }
 
   handleClick(e) {
@@ -13,6 +25,14 @@ class HistoryItem extends Component {
     if (typeof this.props.onClick === 'function') {
       this.props.onClick(this.props.versionid);
     }
+  }
+
+  handleRedirect() {
+    const { fileid, versionid } = this.props;
+    const returnUrl = encodeURIComponent(window.location.href);
+
+    // Redirect to the dev task URL and append the return URL as a query parameter
+    window.location.href = `./dev/tasks/RestoreFileVersionTask?FileID=${fileid}&Version=${versionid}&ReturnURL=${returnUrl}`;
   }
 
   render() {
@@ -34,6 +54,14 @@ class HistoryItem extends Component {
           <span className="history-item__version">v.{this.props.versionid}</span>
           <span className="history-item__date">{this.props.date_ago} {this.props.author}</span>
           {this.props.summary}
+        </p>
+        <p>
+          {/* <a href={`./dev/tasks/RestoreFileVersionTask?FileID=${this.props.fileid}&Version=${this.props.versionid}`}>
+            Revert to this version
+          </a> */}
+          <button type="button" onClick={this.handleRedirect}>
+            Revert to this version
+          </button>
         </p>
         {publishedLine}
       </li>

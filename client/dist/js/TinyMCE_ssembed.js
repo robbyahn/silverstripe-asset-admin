@@ -1,1 +1,619 @@
-!function(){"use strict";var e={4333:function(e,t,n){Object.defineProperty(t,"__esModule",{value:!0}),t.default=t.Component=void 0;var r=f(n(5815)),o=p(n(1594)),i=n(9367),s=n(9040),a=f(n(8737)),d=p(n(2811)),l=f(n(6935)),c=n(5125);function u(e){if("function"!=typeof WeakMap)return null;var t=new WeakMap,n=new WeakMap;return(u=function(e){return e?n:t})(e)}function p(e,t){if(!t&&e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var n=u(t);if(n&&n.has(e))return n.get(e);var r={__proto__:null},o=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var i in e)if("default"!==i&&{}.hasOwnProperty.call(e,i)){var s=o?Object.getOwnPropertyDescriptor(e,i):null;s&&(s.get||s.set)?Object.defineProperty(r,i,s):r[i]=e[i]}return r.default=e,n&&n.set(e,r),r}function f(e){return e&&e.__esModule?e:{default:e}}class m extends o.Component{constructor(e){super(e),this.handleSubmit=this.handleSubmit.bind(this)}componentDidMount(){this.setOverrides(this.props)}componentDidUpdate(e){this.props.isOpen&&!e.isOpen&&this.setOverrides(this.props)}componentWillUnmount(){this.clearOverrides()}setOverrides(e){if(this.props.schemaUrl!==e.schemaUrl&&this.clearOverrides(),e.schemaUrl){const t=Object.assign({},e.fileAttributes);delete t.ID;const n={fields:Object.entries(t).map((e=>{const[t,n]=e;return{name:t,value:n}}))};this.props.actions.schema.setSchemaStateOverrides(e.schemaUrl,n)}}getModalProps(){const e=Object.assign({onSubmit:this.handleSubmit,onLoadingError:this.handleLoadingError,showErrorMessage:!0,responseClassBad:"alert alert-danger",identifier:"AssetAdmin.InsertEmbedModal"},this.props,{className:`insert-embed-modal ${this.props.className}`,size:"lg",onClosed:this.props.onClosed,title:this.props.targetUrl?r.default._t("AssetAdmin.EditTitle","Media from the web"):r.default._t("AssetAdmin.CreateTitle","Insert new media from the web")});return delete e.sectionConfig,delete e.onInsert,delete e.fileAttributes,e}clearOverrides(){this.props.actions.schema.setSchemaStateOverrides(this.props.schemaUrl,null)}handleLoadingError(e){"function"==typeof this.props.onLoadingError&&this.props.onLoadingError(e)}handleSubmit(e,t){switch(t){case"action_addmedia":this.props.onCreate(e);break;case"action_insertmedia":this.props.onInsert(e);break;case"action_cancel":this.props.onClosed()}return Promise.resolve()}render(){const{FormBuilderModalComponent:e}=this.props;return o.default.createElement(e,this.getModalProps())}}t.Component=m,m.propTypes={sectionConfig:l.default.shape({url:l.default.string,form:l.default.object}),isOpen:l.default.bool,onInsert:l.default.func.isRequired,onCreate:l.default.func.isRequired,fileAttributes:l.default.shape({Url:l.default.string,CaptionText:l.default.string,PreviewUrl:l.default.string,Placement:l.default.string,Width:l.default.number,Height:l.default.number}),onClosed:l.default.func.isRequired,className:l.default.string,actions:l.default.object,schemaUrl:l.default.string.isRequired,targetUrl:l.default.string,onLoadingError:l.default.func,FormBuilderModalComponent:l.default.oneOfType([l.default.object,l.default.func])},m.defaultProps={className:"",fileAttributes:{},FormBuilderModalComponent:a.default};t.default=(0,s.connect)((function(e,t){const n=e.config.sections.find((e=>"SilverStripe\\AssetAdmin\\Controller\\AssetAdmin"===e.name)),r=t.fileAttributes?t.fileAttributes.Url:"",o=n.form.remoteEditForm.schemaUrl,i=r&&(0,c.joinUrlPaths)(o,`/?embedurl=${encodeURIComponent(r)}`),s=n.form.remoteCreateForm.schemaUrl;return{sectionConfig:n,schemaUrl:i||s,targetUrl:r}}),(function(e){return{actions:{schema:(0,i.bindActionCreators)(d,e)}}}))(m)},8737:function(e){e.exports=FormBuilderModal},5207:function(e){e.exports=Injector},6935:function(e){e.exports=PropTypes},1594:function(e){e.exports=React},5145:function(e){e.exports=ReactDomClient},9040:function(e){e.exports=ReactRedux},9367:function(e){e.exports=Redux},2811:function(e){e.exports=SchemaActions},2121:function(e){e.exports=ShortcodeSerialiser},5815:function(e){e.exports=i18n},1669:function(e){e.exports=jQuery},5125:function(e){e.exports=ssUrlLib}},t={};function n(r){var o=t[r];if(void 0!==o)return o.exports;var i=t[r]={exports:{}};return e[r](i,i.exports,n),i.exports}var r=u(n(1669)),o=u(n(1594)),i=n(5145),s=n(5207),a=function(e,t){if(!t&&e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var n=c(t);if(n&&n.has(e))return n.get(e);var r={__proto__:null},o=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var i in e)if("default"!==i&&{}.hasOwnProperty.call(e,i)){var s=o?Object.getOwnPropertyDescriptor(e,i):null;s&&(s.get||s.set)?Object.defineProperty(r,i,s):r[i]=e[i]}return r.default=e,n&&n.set(e,r),r}(n(2121)),d=u(n(4333)),l=u(n(5815));function c(e){if("function"!=typeof WeakMap)return null;var t=new WeakMap,n=new WeakMap;return(c=function(e){return e?n:t})(e)}function u(e){return e&&e.__esModule?e:{default:e}}const p=(0,s.loadComponent)(d.default),f='div[data-shortcode="embed"]';(()=>{const e=e=>{const t=l.default._t("AssetAdmin.INSERT_VIA_URL","Insert media via URL"),n=l.default._t("AssetAdmin.EDIT_MEDIA","Edit media"),o=l.default._t("AssetAdmin.DELETE_MEDIA","Delete media"),i=l.default._t("AssetAdmin.MEDIA","Media");return e.addCommand("ssembed",(()=>{(0,r.default)(`#${e.id}`).entwine("ss").openEmbedDialog()})),e.addCommand("ssembed-delete",(()=>{const t=e.selection.getNode();e.dom.is(t,f)?t.remove():e.dom.is(t.parentNode,f)?t.parentNode.remove():console.error({error:"Unexpected selection - expected embed",selectedNode:t})})),e.ui.registry.addButton("ssembed",{tooltip:t,icon:"embed",onAction:()=>e.execCommand("ssembed"),stateSelector:f}),e.ui.registry.addMenuItem("ssembed",{text:i,icon:"embed",onAction:()=>e.execCommand("ssembed")}),e.ui.registry.addButton("ssembededit",{tooltip:n,icon:"edit-block",onAction:()=>e.execCommand("ssembed")}),e.ui.registry.addButton("ssembeddelete",{tooltip:o,icon:"remove",onAction:()=>e.execCommand("ssembed-delete")}),e.ui.registry.addContextToolbar("ssembed",{predicate:t=>e.dom.is(t,f),position:"node",scope:"node",items:"alignleft aligncenter alignright | ssembededit ssembeddelete"}),e.on("BeforeExecCommand",(t=>{const n=t.command,r=t.ui,o=t.value;"mceMedia"===n&&(t.preventDefault(),e.execCommand("ssembed",r,o))})),e.on("GetContent",(e=>{const t=(0,r.default)(`<div>${e.content}</div>`);t.find(f).each((function(){const e=(0,r.default)(this),t=e.find("img.placeholder");if(0===t.length)return e.removeAttr("data-url"),void e.removeAttr("data-shortcode");const n=e.find(".caption").text(),o=parseInt(t.attr("width"),10),i=parseInt(t.attr("height"),10),s=e.data("url"),d=(0,a.sanitiseShortCodeProperties)({url:s,thumbnail:t.prop("src"),class:e.prop("class"),width:isNaN(o)?null:o,height:isNaN(i)?null:i,caption:n}),l=a.default.serialise({name:"embed",properties:d,wrapped:!0,content:d.url});e.replaceWith(l)})),e.content=t.html()})),e.on("BeforeSetContent",(e=>{let t=e.content,n=a.default.match("embed",!0,t);for(;n;){const e=n.properties,o=(0,r.default)("<div/>").attr("data-url",e.url||n.content).attr("data-shortcode","embed").addClass(e.class).addClass("ss-htmleditorfield-file embed"),i=(0,r.default)("<img />").attr("src",e.thumbnail).addClass("placeholder");if(e.width&&i.attr("width",e.width),e.height&&i.attr("height",e.height),o.append(i),e.caption){const t=(0,r.default)("<p />").addClass("caption").text(e.caption);o.append(t)}t=t.replace(n.original,(0,r.default)("<div/>").append(o).html()),n=a.default.match("embed",!0,t)}e.content=t})),{getMetadata(){return{name:"Silverstripe Embed",url:"https://docs.silverstripe.org/en/4/developer_guides/forms/field_types/htmleditorfield"}}}};tinymce.PluginManager.add("ssembed",(t=>e(t)))})(),r.default.entwine("ss",(e=>{e(".js-injector-boot #insert-embed-react__dialog-wrapper").entwine({Element:null,Data:{},ReactRoot:null,onunmatch(){this._clearModal()},_clearModal(){const e=this.getReactRoot();e&&(e.unmount(),this.setReactRoot(null))},open(){this._renderModal(!0)},close(){this.setData({}),this._renderModal(!1)},_renderModal(e){var t=this;const n=this.getOriginalAttributes();let r=this.getReactRoot();r||(r=(0,i.createRoot)(this[0])),r.render(o.default.createElement(p,{isOpen:e,onCreate:function(){return t._handleCreate(...arguments)},onInsert:function(){return t._handleInsert(...arguments)},onClosed:()=>this.close(),onLoadingError:function(){return t._handleLoadingError(...arguments)},bodyClassName:"modal__dialog",className:"insert-embed-react__dialog-wrapper",fileAttributes:n})),this.setReactRoot(r)},_handleLoadingError(){this.setData({}),this.open()},_handleInsert(e){const t=this.getData();this.setData(Object.assign({Url:t.Url},e)),this.insertRemote(),this.close()},_handleCreate(e){this.setData(Object.assign({},this.getData(),e)),this.open()},getOriginalAttributes(){const t=this.getData(),n=this.getElement();if(!n)return t;const r=e(n.getEditor().getSelectedNode());if(!r.length)return t;const o=r.closest(f).add(r.filter(f));if(!o.length)return t;const i=o.find("img.placeholder");if(0===i.length)return t;const s=o.find(".caption").text(),a=parseInt(i.width(),10),d=parseInt(i.height(),10);return{Url:o.data("url")||t.Url,CaptionText:s,PreviewUrl:i.attr("src"),Width:isNaN(a)?null:a,Height:isNaN(d)?null:d,Placement:this.findPosition(o.prop("class"))}},findPosition(e){if("string"!=typeof e)return"";const t=e.split(" ");return["leftAlone","center","rightAlone","left","right"].find((e=>t.indexOf(e)>-1))},insertRemote(){const t=this.getElement();if(!t)return!1;const n=t.getEditor();if(!n)return!1;const o=this.getData(),i=(0,r.default)("<div/>").attr("data-url",o.Url).attr("data-shortcode","embed").addClass(o.Placement).addClass("ss-htmleditorfield-file embed"),s=(0,r.default)("<img />").attr("src",o.PreviewUrl).addClass("placeholder");if(o.Width&&s.attr("width",o.Width),o.Height&&s.attr("height",o.Height),i.append(s),o.CaptionText){const e=(0,r.default)("<p />").addClass("caption").text(o.CaptionText);i.append(e)}const a=e(n.getSelectedNode());let d=e(null);return a.length&&(d=a.filter(f),0===d.length&&(d=a.closest(f)),0===d.length&&(d=a.filter("img.placeholder"))),d.length?d.replaceWith(i):(n.repaint(),n.insertContent(e("<div />").append(i.clone()).html(),{skip_undo:1})),n.addUndo(),n.repaint(),!0}})}))}();
+/******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./client/src/components/InsertEmbedModal/InsertEmbedModal.js":
+/*!********************************************************************!*\
+  !*** ./client/src/components/InsertEmbedModal/InsertEmbedModal.js ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.Component = void 0;
+var _i18n = _interopRequireDefault(__webpack_require__(/*! i18n */ "i18n"));
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _redux = __webpack_require__(/*! redux */ "redux");
+var _reactRedux = __webpack_require__(/*! react-redux */ "react-redux");
+var _FormBuilderModal = _interopRequireDefault(__webpack_require__(/*! components/FormBuilderModal/FormBuilderModal */ "components/FormBuilderModal/FormBuilderModal"));
+var schemaActions = _interopRequireWildcard(__webpack_require__(/*! state/schema/SchemaActions */ "state/schema/SchemaActions"));
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "prop-types"));
+var _urls = __webpack_require__(/*! lib/urls */ "lib/urls");
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const sectionConfigKey = 'SilverStripe\\AssetAdmin\\Controller\\AssetAdmin';
+class InsertEmbedModal extends _react.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    this.setOverrides(this.props);
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpen && !prevProps.isOpen) {
+      this.setOverrides(this.props);
+    }
+  }
+  componentWillUnmount() {
+    this.clearOverrides();
+  }
+  setOverrides(props) {
+    if (this.props.schemaUrl !== props.schemaUrl) {
+      this.clearOverrides();
+    }
+    if (props.schemaUrl) {
+      const attrs = Object.assign({}, props.fileAttributes);
+      delete attrs.ID;
+      const overrides = {
+        fields: Object.entries(attrs).map(field => {
+          const [name, value] = field;
+          return {
+            name,
+            value
+          };
+        })
+      };
+      this.props.actions.schema.setSchemaStateOverrides(props.schemaUrl, overrides);
+    }
+  }
+  getModalProps() {
+    const props = Object.assign({
+      onSubmit: this.handleSubmit,
+      onLoadingError: this.handleLoadingError,
+      showErrorMessage: true,
+      responseClassBad: 'alert alert-danger',
+      identifier: 'AssetAdmin.InsertEmbedModal'
+    }, this.props, {
+      className: `insert-embed-modal ${this.props.className}`,
+      size: 'lg',
+      onClosed: this.props.onClosed,
+      title: this.props.targetUrl ? _i18n.default._t('AssetAdmin.EditTitle', 'Media from the web') : _i18n.default._t('AssetAdmin.CreateTitle', 'Insert new media from the web')
+    });
+    delete props.sectionConfig;
+    delete props.onInsert;
+    delete props.fileAttributes;
+    return props;
+  }
+  clearOverrides() {
+    this.props.actions.schema.setSchemaStateOverrides(this.props.schemaUrl, null);
+  }
+  handleLoadingError(error) {
+    if (typeof this.props.onLoadingError === 'function') {
+      this.props.onLoadingError(error);
+    }
+  }
+  handleSubmit(data, action) {
+    switch (action) {
+      case 'action_addmedia':
+        {
+          this.props.onCreate(data);
+          break;
+        }
+      case 'action_insertmedia':
+        {
+          this.props.onInsert(data);
+          break;
+        }
+      case 'action_cancel':
+        {
+          this.props.onClosed();
+          break;
+        }
+      default:
+        {}
+    }
+    return Promise.resolve();
+  }
+  render() {
+    const {
+      FormBuilderModalComponent
+    } = this.props;
+    return _react.default.createElement(FormBuilderModalComponent, this.getModalProps());
+  }
+}
+exports.Component = InsertEmbedModal;
+InsertEmbedModal.propTypes = {
+  sectionConfig: _propTypes.default.shape({
+    url: _propTypes.default.string,
+    form: _propTypes.default.object
+  }),
+  isOpen: _propTypes.default.bool,
+  onInsert: _propTypes.default.func.isRequired,
+  onCreate: _propTypes.default.func.isRequired,
+  fileAttributes: _propTypes.default.shape({
+    Url: _propTypes.default.string,
+    CaptionText: _propTypes.default.string,
+    PreviewUrl: _propTypes.default.string,
+    Placement: _propTypes.default.string,
+    Width: _propTypes.default.number,
+    Height: _propTypes.default.number
+  }),
+  onClosed: _propTypes.default.func.isRequired,
+  className: _propTypes.default.string,
+  actions: _propTypes.default.object,
+  schemaUrl: _propTypes.default.string.isRequired,
+  targetUrl: _propTypes.default.string,
+  onLoadingError: _propTypes.default.func,
+  FormBuilderModalComponent: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.func])
+};
+InsertEmbedModal.defaultProps = {
+  className: '',
+  fileAttributes: {},
+  FormBuilderModalComponent: _FormBuilderModal.default
+};
+function mapStateToProps(state, ownProps) {
+  const sectionConfig = state.config.sections.find(section => section.name === sectionConfigKey);
+  const targetUrl = ownProps.fileAttributes ? ownProps.fileAttributes.Url : '';
+  const baseEditUrl = sectionConfig.form.remoteEditForm.schemaUrl;
+  const editUrl = targetUrl && (0, _urls.joinUrlPaths)(baseEditUrl, `/?embedurl=${encodeURIComponent(targetUrl)}`);
+  const createUrl = sectionConfig.form.remoteCreateForm.schemaUrl;
+  const schemaUrl = editUrl || createUrl;
+  return {
+    sectionConfig,
+    schemaUrl,
+    targetUrl
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      schema: (0, _redux.bindActionCreators)(schemaActions, dispatch)
+    }
+  };
+}
+var _default = exports["default"] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(InsertEmbedModal);
+
+/***/ }),
+
+/***/ "components/FormBuilderModal/FormBuilderModal":
+/*!***********************************!*\
+  !*** external "FormBuilderModal" ***!
+  \***********************************/
+/***/ (function(module) {
+
+module.exports = FormBuilderModal;
+
+/***/ }),
+
+/***/ "lib/Injector":
+/*!***************************!*\
+  !*** external "Injector" ***!
+  \***************************/
+/***/ (function(module) {
+
+module.exports = Injector;
+
+/***/ }),
+
+/***/ "prop-types":
+/*!****************************!*\
+  !*** external "PropTypes" ***!
+  \****************************/
+/***/ (function(module) {
+
+module.exports = PropTypes;
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = React;
+
+/***/ }),
+
+/***/ "react-dom/client":
+/*!*********************************!*\
+  !*** external "ReactDomClient" ***!
+  \*********************************/
+/***/ (function(module) {
+
+module.exports = ReactDomClient;
+
+/***/ }),
+
+/***/ "react-redux":
+/*!*****************************!*\
+  !*** external "ReactRedux" ***!
+  \*****************************/
+/***/ (function(module) {
+
+module.exports = ReactRedux;
+
+/***/ }),
+
+/***/ "redux":
+/*!************************!*\
+  !*** external "Redux" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = Redux;
+
+/***/ }),
+
+/***/ "state/schema/SchemaActions":
+/*!********************************!*\
+  !*** external "SchemaActions" ***!
+  \********************************/
+/***/ (function(module) {
+
+module.exports = SchemaActions;
+
+/***/ }),
+
+/***/ "lib/ShortcodeSerialiser":
+/*!**************************************!*\
+  !*** external "ShortcodeSerialiser" ***!
+  \**************************************/
+/***/ (function(module) {
+
+module.exports = ShortcodeSerialiser;
+
+/***/ }),
+
+/***/ "i18n":
+/*!***********************!*\
+  !*** external "i18n" ***!
+  \***********************/
+/***/ (function(module) {
+
+module.exports = i18n;
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/***/ (function(module) {
+
+module.exports = jQuery;
+
+/***/ }),
+
+/***/ "lib/urls":
+/*!***************************!*\
+  !*** external "ssUrlLib" ***!
+  \***************************/
+/***/ (function(module) {
+
+module.exports = ssUrlLib;
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+/*!***********************************************!*\
+  !*** ./client/src/entwine/TinyMCE_ssembed.js ***!
+  \***********************************************/
+
+
+var _jquery = _interopRequireDefault(__webpack_require__(/*! jquery */ "jquery"));
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _client = __webpack_require__(/*! react-dom/client */ "react-dom/client");
+var _Injector = __webpack_require__(/*! lib/Injector */ "lib/Injector");
+var _ShortcodeSerialiser = _interopRequireWildcard(__webpack_require__(/*! lib/ShortcodeSerialiser */ "lib/ShortcodeSerialiser"));
+var _InsertEmbedModal = _interopRequireDefault(__webpack_require__(/*! components/InsertEmbedModal/InsertEmbedModal */ "./client/src/components/InsertEmbedModal/InsertEmbedModal.js"));
+var _i18n = _interopRequireDefault(__webpack_require__(/*! i18n */ "i18n"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const InjectableInsertEmbedModal = (0, _Injector.loadComponent)(_InsertEmbedModal.default);
+const filter = 'div[data-shortcode="embed"]';
+(() => {
+  const ssembed = {
+    init: editor => {
+      const insertTitle = _i18n.default._t('AssetAdmin.INSERT_VIA_URL', 'Insert media via URL');
+      const editTitle = _i18n.default._t('AssetAdmin.EDIT_MEDIA', 'Edit media');
+      const deleteTitle = _i18n.default._t('AssetAdmin.DELETE_MEDIA', 'Delete media');
+      const contextTitle = _i18n.default._t('AssetAdmin.MEDIA', 'Media');
+      editor.addCommand('ssembed', () => {
+        (0, _jquery.default)(`#${editor.id}`).entwine('ss').openEmbedDialog();
+      });
+      editor.addCommand('ssembed-delete', () => {
+        const node = editor.selection.getNode();
+        if (editor.dom.is(node, filter)) {
+          node.remove();
+        } else if (editor.dom.is(node.parentNode, filter)) {
+          node.parentNode.remove();
+        } else {
+          console.error({
+            error: 'Unexpected selection - expected embed',
+            selectedNode: node
+          });
+        }
+      });
+      editor.ui.registry.addButton('ssembed', {
+        tooltip: insertTitle,
+        icon: 'embed',
+        onAction: () => editor.execCommand('ssembed'),
+        stateSelector: filter
+      });
+      editor.ui.registry.addMenuItem('ssembed', {
+        text: contextTitle,
+        icon: 'embed',
+        onAction: () => editor.execCommand('ssembed')
+      });
+      editor.ui.registry.addButton('ssembededit', {
+        tooltip: editTitle,
+        icon: 'edit-block',
+        onAction: () => editor.execCommand('ssembed')
+      });
+      editor.ui.registry.addButton('ssembeddelete', {
+        tooltip: deleteTitle,
+        icon: 'remove',
+        onAction: () => editor.execCommand('ssembed-delete')
+      });
+      editor.ui.registry.addContextToolbar('ssembed', {
+        predicate: node => editor.dom.is(node, filter),
+        position: 'node',
+        scope: 'node',
+        items: 'alignleft aligncenter alignright | ssembededit ssembeddelete'
+      });
+      editor.on('BeforeExecCommand', e => {
+        const cmd = e.command;
+        const ui = e.ui;
+        const val = e.value;
+        if (cmd === 'mceMedia') {
+          e.preventDefault();
+          editor.execCommand('ssembed', ui, val);
+        }
+      });
+      editor.on('GetContent', o => {
+        const content = (0, _jquery.default)(`<div>${o.content}</div>`);
+        content.find(filter).each(function replaceWithShortCode() {
+          const embed = (0, _jquery.default)(this);
+          const placeholder = embed.find('img.placeholder');
+          if (placeholder.length === 0) {
+            embed.removeAttr('data-url');
+            embed.removeAttr('data-shortcode');
+            return;
+          }
+          const caption = embed.find('.caption').text();
+          const width = parseInt(placeholder.attr('width'), 10);
+          const height = parseInt(placeholder.attr('height'), 10);
+          const url = embed.data('url');
+          const properties = (0, _ShortcodeSerialiser.sanitiseShortCodeProperties)({
+            url,
+            thumbnail: placeholder.prop('src'),
+            class: embed.prop('class'),
+            width: isNaN(width) ? null : width,
+            height: isNaN(height) ? null : height,
+            caption
+          });
+          const shortCode = _ShortcodeSerialiser.default.serialise({
+            name: 'embed',
+            properties,
+            wrapped: true,
+            content: properties.url
+          });
+          embed.replaceWith(shortCode);
+        });
+        o.content = content.html();
+      });
+      editor.on('BeforeSetContent', o => {
+        let content = o.content;
+        let match = _ShortcodeSerialiser.default.match('embed', true, content);
+        while (match) {
+          const data = match.properties;
+          const base = (0, _jquery.default)('<div/>').attr('data-url', data.url || match.content).attr('data-shortcode', 'embed').addClass(data.class).addClass('ss-htmleditorfield-file embed');
+          const placeholder = (0, _jquery.default)('<img />').attr('src', data.thumbnail).addClass('placeholder');
+          if (data.width) {
+            placeholder.attr('width', data.width);
+          }
+          if (data.height) {
+            placeholder.attr('height', data.height);
+          }
+          base.append(placeholder);
+          if (data.caption) {
+            const caption = (0, _jquery.default)('<p />').addClass('caption').text(data.caption);
+            base.append(caption);
+          }
+          content = content.replace(match.original, (0, _jquery.default)('<div/>').append(base).html());
+          match = _ShortcodeSerialiser.default.match('embed', true, content);
+        }
+        o.content = content;
+      });
+      return {
+        getMetadata() {
+          return {
+            name: 'Silverstripe Embed',
+            url: 'https://docs.silverstripe.org/en/4/developer_guides/forms/field_types/htmleditorfield'
+          };
+        }
+      };
+    }
+  };
+  tinymce.PluginManager.add('ssembed', editor => ssembed.init(editor));
+})();
+_jquery.default.entwine('ss', $ => {
+  $('.js-injector-boot #insert-embed-react__dialog-wrapper').entwine({
+    Element: null,
+    Data: {},
+    ReactRoot: null,
+    onunmatch() {
+      this._clearModal();
+    },
+    _clearModal() {
+      const root = this.getReactRoot();
+      if (root) {
+        root.unmount();
+        this.setReactRoot(null);
+      }
+    },
+    open() {
+      this._renderModal(true);
+    },
+    close() {
+      this.setData({});
+      this._renderModal(false);
+    },
+    _renderModal(isOpen) {
+      var _this = this;
+      const handleHide = () => this.close();
+      const handleInsert = function () {
+        return _this._handleInsert(...arguments);
+      };
+      const handleCreate = function () {
+        return _this._handleCreate(...arguments);
+      };
+      const handleLoadingError = function () {
+        return _this._handleLoadingError(...arguments);
+      };
+      const attrs = this.getOriginalAttributes();
+      let root = this.getReactRoot();
+      if (!root) {
+        root = (0, _client.createRoot)(this[0]);
+      }
+      root.render(_react.default.createElement(InjectableInsertEmbedModal, {
+        isOpen: isOpen,
+        onCreate: handleCreate,
+        onInsert: handleInsert,
+        onClosed: handleHide,
+        onLoadingError: handleLoadingError,
+        bodyClassName: "modal__dialog",
+        className: "insert-embed-react__dialog-wrapper",
+        fileAttributes: attrs
+      }));
+      this.setReactRoot(root);
+    },
+    _handleLoadingError() {
+      this.setData({});
+      this.open();
+    },
+    _handleInsert(data) {
+      const oldData = this.getData();
+      this.setData(Object.assign({
+        Url: oldData.Url
+      }, data));
+      this.insertRemote();
+      this.close();
+    },
+    _handleCreate(data) {
+      this.setData(Object.assign({}, this.getData(), data));
+      this.open();
+    },
+    getOriginalAttributes() {
+      const data = this.getData();
+      const $field = this.getElement();
+      if (!$field) {
+        return data;
+      }
+      const node = $($field.getEditor().getSelectedNode());
+      if (!node.length) {
+        return data;
+      }
+      const element = node.closest(filter).add(node.filter(filter));
+      if (!element.length) {
+        return data;
+      }
+      const image = element.find('img.placeholder');
+      if (image.length === 0) {
+        return data;
+      }
+      const caption = element.find('.caption').text();
+      const width = parseInt(image.width(), 10);
+      const height = parseInt(image.height(), 10);
+      return {
+        Url: element.data('url') || data.Url,
+        CaptionText: caption,
+        PreviewUrl: image.attr('src'),
+        Width: isNaN(width) ? null : width,
+        Height: isNaN(height) ? null : height,
+        Placement: this.findPosition(element.prop('class'))
+      };
+    },
+    findPosition(cssClass) {
+      const alignments = ['leftAlone', 'center', 'rightAlone', 'left', 'right'];
+      if (typeof cssClass !== 'string') {
+        return '';
+      }
+      const classes = cssClass.split(' ');
+      return alignments.find(alignment => classes.indexOf(alignment) > -1);
+    },
+    insertRemote() {
+      const $field = this.getElement();
+      if (!$field) {
+        return false;
+      }
+      const editor = $field.getEditor();
+      if (!editor) {
+        return false;
+      }
+      const data = this.getData();
+      const base = (0, _jquery.default)('<div/>').attr('data-url', data.Url).attr('data-shortcode', 'embed').addClass(data.Placement).addClass('ss-htmleditorfield-file embed');
+      const placeholder = (0, _jquery.default)('<img />').attr('src', data.PreviewUrl).addClass('placeholder');
+      if (data.Width) {
+        placeholder.attr('width', data.Width);
+      }
+      if (data.Height) {
+        placeholder.attr('height', data.Height);
+      }
+      base.append(placeholder);
+      if (data.CaptionText) {
+        const caption = (0, _jquery.default)('<p />').addClass('caption').text(data.CaptionText);
+        base.append(caption);
+      }
+      const node = $(editor.getSelectedNode());
+      let replacee = $(null);
+      if (node.length) {
+        replacee = node.filter(filter);
+        if (replacee.length === 0) {
+          replacee = node.closest(filter);
+        }
+        if (replacee.length === 0) {
+          replacee = node.filter('img.placeholder');
+        }
+      }
+      if (replacee.length) {
+        replacee.replaceWith(base);
+      } else {
+        editor.repaint();
+        editor.insertContent($('<div />').append(base.clone()).html(), {
+          skip_undo: 1
+        });
+      }
+      editor.addUndo();
+      editor.repaint();
+      return true;
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=TinyMCE_ssembed.js.map

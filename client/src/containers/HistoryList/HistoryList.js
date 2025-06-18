@@ -153,6 +153,7 @@ class HistoryList extends Component {
           {historyList.map((history) => (
             <HistoryItem
               key={history.versionid}
+              fileid={this.props.data.fileId}
               {...history}
               onClick={this.handleClick}
             />
