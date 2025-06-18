@@ -5979,7 +5979,7 @@ class HistoryItem extends _react.Component {
       versionid
     } = this.props;
     const returnUrl = encodeURIComponent(window.location.href);
-    window.location.href = `./dev/tasks/RestoreFileVersionTask?FileID=${fileid}&Version=${versionid}&ReturnURL=${returnUrl}`;
+    window.location.href = `./fileversion/restore?FileID=${fileid}&Version=${versionid}&ReturnURL=${returnUrl}`;
   }
   render() {
     let publishedLine = null;

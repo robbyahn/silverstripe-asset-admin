@@ -32,7 +32,7 @@ class HistoryItem extends Component {
     const returnUrl = encodeURIComponent(window.location.href);
 
     // Redirect to the dev task URL and append the return URL as a query parameter
-    window.location.href = `./dev/tasks/RestoreFileVersionTask?FileID=${fileid}&Version=${versionid}&ReturnURL=${returnUrl}`;
+    window.location.href = `./fileversion/restore?FileID=${fileid}&Version=${versionid}&ReturnURL=${returnUrl}`;
   }
 
   render() {
